@@ -1,7 +1,7 @@
 import re
 from datetime import datetime
 from modeles.joueur import Joueur
-from controleurs.gestionnaire_donne import GestionnaireDonnees
+from controleurs.gestionnaire_donne_joueur import GestionnaireJoueurs
 
 
 class PlayerController:
@@ -10,7 +10,7 @@ class PlayerController:
         print("Entrez les informations du joueur :")
         identifiant_national = PlayerController._verifier_identifiant_national()
         
-        if GestionnaireDonnees.joueur_existe(identifiant_national):
+        if GestionnaireJoueurs.joueur_existe(identifiant_national):
             print("Un joueur avec cet identifiant national existe déjà.")
             return None
 
@@ -20,7 +20,7 @@ class PlayerController:
 
         nouveau_joueur = Joueur.generate_joueur(identifiant_national, nom, prenom, date_naissance)
         
-        GestionnaireDonnees.enregistrer_joueur(nouveau_joueur)
+        GestionnaireJoueurs.enregistrer(nouveau_joueur)
 
         print(f"Joueur {nouveau_joueur.nom} enregistré avec succès.")
 
@@ -30,24 +30,15 @@ class PlayerController:
     def supprimer_joueur():
         identifiant_national = input("Entrez l'identifiant national du joueur à supprimer : ")
 
-        # Vérification de l'existence du joueur
-        if not GestionnaireDonnees.joueur_existe(identifiant_national):
+        if not GestionnaireJoueurs.joueur_existe(identifiant_national):
             print("Aucun joueur avec cet identifiant national n'existe.")
             return None
 
-        # Suppression du joueur
-        GestionnaireDonnees.supprimer_joueur(identifiant_national)
+        GestionnaireJoueurs.supprimer_joueur(identifiant_national)
 
         print(f"Joueur avec l'identifiant national {identifiant_national} a été supprimé avec succès.")
 
         return None
-    
-    @staticmethod
-    def afficher_joueurs():
-        joueurs = GestionnaireDonnees.charger_joueurs()
-
-        for joueur in joueurs:
-            print(f"{joueur.nom}, {joueur.prenom}, {joueur.identifiant_national}")
 
     @staticmethod
     def _verifier_identifiant_national():

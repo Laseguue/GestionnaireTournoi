@@ -5,7 +5,7 @@ class Joueur:
         self.prenom = prenom
         self.date_naissance = date_naissance
         self.score = score
-        self.matchs = matchs  # Stocker les identifiants des joueurs avec lesquels ce joueur a déjà joué.
+        self.matchs = matchs 
     
     @staticmethod
     def generate_joueur(identifiant_national, nom, prenom, date_naissance):

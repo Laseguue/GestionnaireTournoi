@@ -1,4 +1,5 @@
-from vues.joueur_vues import VuesJoueur
+from controleurs.menu_control import MenuController
+
 
 if __name__ == "__main__":
-    VuesJoueur.menu_joueur()
+    MenuController.afficher_menu_principal()
