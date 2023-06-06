@@ -1,0 +1,32 @@
+Tournoi: pilo
+Lieu: pilotte
+Date début: 12/12/2023
+Date fin: 12/12/2023
+Nombres de tours: 4
+Description: teste2
+
+Joueurs:
+FR12345 arthur seguret 29/08/1996
+FR65412 tom holand 14/12/2000
+FR98745 martin matin 12/12/2000
+FR54321 pluton mortille 29/08/1996
+
+Tours:
+Tour 1:
+	Match 1: arthur vs tom : gagnant : arthur
+	Match 2: martin vs pluton : gagnant : martin
+Tour 2:
+	Match 1: arthur vs martin : gagnant : arthur
+	Match 2: tom vs pluton : gagnant : tom
+Tour 3:
+	Match 1: arthur vs martin : gagnant : arthur
+	Match 2: tom vs pluton : gagnant : tom
+Tour 4:
+	Match 1: arthur vs tom : gagnant : arthur
+	Match 2: martin vs pluton : gagnant : martin
+
+Classement:
+1. seguret 4 
+2. holand 2 
+3. matin 2 
+4. mortille 0 

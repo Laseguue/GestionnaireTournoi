@@ -33,7 +33,6 @@ class GestionnaireJoueurs:
         if joueur_trouve:
             with open('Liste_de_joueurs.json', 'w') as file:
                 file.write(jsonpickle.encode(joueurs))
-            print("Joueur supprimé avec succès.")
         else:
             print("Le joueur n'a pas été trouvé.")
         

@@ -35,10 +35,16 @@ class RapportController:
         tournois = GestionnaireTournois.charger()
         for tournoi in tournois:
             if tournoi.nom == nom_tournoi:
-                for tour in tournoi.tours:
-                    print(f"Tour {tour.id}:")
+                for i, tour in enumerate(tournoi.tours, 1):
+                    print(f"Tour {i}:")
                     for match in tour.matchs:
-                        print(f"Match {match.id} : {match.joueur1.nom} vs {match.joueur2.nom} : {match.joueur1.nom} {match.joueur1.score} points, {match.joueur2.nom} {match.joueur2.score} points")
+                        if match.resultat == 0:
+                            gagnant = match.joueur1.nom
+                        elif match.resultat == 1:
+                            gagnant = match.joueur2.nom
+                        else:
+                            gagnant = 'égalité'
+                        print(f"Match {match.id} : {match.joueur1.nom} vs {match.joueur2.nom} : gagnant : {gagnant}")
                 break
     
     @staticmethod
@@ -71,7 +77,13 @@ class RapportController:
             for i, tour in enumerate(tournoi.tours, 1):
                 f.write(f"Tour {i}:\n")
                 for j, match in enumerate(tour.matchs, 1):
-                    f.write(f"\tMatch {j}: {match.joueur1.prenom} vs {match.joueur2.prenom} : {match.joueur1.prenom} {match.joueur1.score} points {match.joueur2.prenom} {match.joueur2.score} points\n")
+                    if match.resultat == 0:
+                        gagnant = match.joueur1.prenom
+                    elif match.resultat == 1:
+                        gagnant = match.joueur2.prenom
+                    else:
+                        gagnant = 'égalité'
+                    f.write(f"\tMatch {j}: {match.joueur1.prenom} vs {match.joueur2.prenom} : gagnant : {gagnant}\n")
             f.write("\n")
             f.write("Classement:\n")
             sorted_joueurs = sorted(tournoi.joueurs, key=lambda joueur: joueur.score, reverse=True)

@@ -1,3 +1,4 @@
+import random
 from modeles.joueur import Joueur
 from modeles.tournoi import Tournoi
 from modeles.tour import Tour
@@ -25,7 +26,7 @@ class TournoiController:
     
     @staticmethod
     def supprimer_tournoi(tournoi):
-        GestionnaireTournois.supprimer_tournoi(id)
+        GestionnaireTournois.supprimer_tournoi(tournoi.nom)
         print("Le tournoi a été supprimé avec succès.")
 
     @staticmethod
@@ -35,6 +36,7 @@ class TournoiController:
         if joueur:
             tournoi.joueurs.append(joueur)
             GestionnaireTournois.enregistrer(tournoi)
+            print(f"Le joueur {joueur.nom} à étais ajouté au tournoi {tournoi.nom} avec succes.\n")
         else:
             print(f"Aucun joueur trouvé avec l'identifiant national {identifiant_national}")
 
@@ -42,13 +44,15 @@ class TournoiController:
     def commencer_tournoi(tournoi):
         random.shuffle(tournoi.joueurs)
         TournoiController.creer_tour(tournoi)
-        tournoi.num_tour_actuel += 1
+        TournoiController.saisir_resultat_tour(tournoi)
+        GestionnaireTournois.enregistrer(tournoi)
 
     @staticmethod
     def continuer_tournoi(tournoi):
         tournoi.joueurs.sort(key=lambda j: j.score, reverse=True)
         TournoiController.creer_tour(tournoi)
-        tournoi.num_tour_actuel += 1
+        TournoiController.saisir_resultat_tour(tournoi)
+        GestionnaireTournois.enregistrer(tournoi)
 
     @staticmethod
     def creer_tour(tournoi):
@@ -73,7 +77,7 @@ class TournoiController:
         tournoi.tours.append(tour)
 
         GestionnaireTournois.enregistrer(tournoi)
-
+        tournoi.num_tour_actuel += 1
         print(f"Le tour {tournoi.num_tour_actuel} a commencé.")
 
     @staticmethod
@@ -104,6 +108,9 @@ class TournoiController:
                 if match.resultat is None:
                     print("Il y a encore des matchs sans résultats dans le tour actuel. Veuillez entrer tous les résultats avant de commencer un nouveau tour.")
                     TournoiController.saisir_resultat_tour(tournoi)
+                    break
+            else:
+                TournoiController.continuer_tournoi(tournoi)
         elif tournoi.num_tour_actuel == 0:
             TournoiController.commencer_tournoi(tournoi)
     

@@ -1,0 +1,35 @@
+Tournoi: WCB
+Lieu: Biarritz
+Date début: 12/12/2023
+Date fin: 13/12/2023
+Nombres de tours: 4
+Description: TESTE1
+
+Joueurs:
+FR98745 martin matin 12/12/2000
+FR65412 tom holand 14/12/2000
+FR54321 pluton mortille 29/08/1996
+FR12345 arthur seguret 29/08/1996
+
+Tours:
+Tour 1:
+	Match 1: pluton vs tom : pluton 2 points tom 3 points
+	Match 2: arthur vs martin : arthur 0 points martin 5 points
+Tour 2:
+	Match 1: tom vs martin : tom 3 points martin 5 points
+	Match 2: pluton vs arthur : pluton 2 points arthur 0 points
+Tour 3:
+	Match 1: martin vs tom : martin 5 points tom 3 points
+	Match 2: pluton vs arthur : pluton 2 points arthur 0 points
+Tour 4:
+	Match 1: martin vs pluton : martin 5 points pluton 2 points
+	Match 2: tom vs arthur : tom 3 points arthur 0 points
+Tour 5:
+	Match 1: martin vs pluton : martin 5 points pluton 2 points
+	Match 2: tom vs arthur : tom 3 points arthur 0 points
+
+Classement:
+1. matin 5 
+2. holand 3 
+3. mortille 2 
+4. seguret 0 

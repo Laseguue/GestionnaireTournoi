@@ -69,18 +69,19 @@ class MenuController:
             if choix == "1":
                 tournoi = TournoiController.creer_tournoi()
                 GestionnaireTournois.enregistrer(tournoi)
+                print(f"Le tournois {tournoi.nom} à étais créer avec succes.\n")
             elif choix == "2":
-                tournoi_id = input("Entrez l'ID du tournoi pour ajouter un joueur : ")
-                tournoi = GestionnaireTournois.charger_tournoi_par_id(tournoi_id)
+                nom_tournoi = input("Entrez le nom du tournoi : ")
+                tournoi = GestionnaireTournois.charger_tournoi_par_nom(nom_tournoi)
                 TournoiController.ajouter_joueur_tournoi(tournoi)
             elif choix == "3":
-                tournoi_id = input("Entrez l'ID du tournoi à lancer ou à reprendre : ")
-                tournoi = GestionnaireTournois.charger_tournoi_par_id(tournoi_id)
+                nom_tournoi = input("Entrez le nom du tournoi : ")
+                tournoi = GestionnaireTournois.charger_tournoi_par_nom(nom_tournoi)
                 TournoiController.lancer_tournoi(tournoi)
                 GestionnaireTournois.enregistrer(tournoi)
             elif choix == "4":
-                tournoi_id = input("Entrez l'ID du tournoi à supprimer : ")
-                tournoi = GestionnaireTournois.charger_tournoi_par_id(tournoi_id)
+                nom_tournoi = input("Entrez le nom du tournoi : ")
+                tournoi = GestionnaireTournois.charger_tournoi_par_nom(nom_tournoi)
                 TournoiController.supprimer_tournoi(tournoi)
             elif choix == "5":
                 break

@@ -35,12 +35,12 @@ class GestionnaireTournois:
         return None
         
     @staticmethod
-    def supprimer_tournoi(id):
+    def supprimer_tournoi(nom_tournoi):
         tournois = GestionnaireTournois.charger()
         tournoi_trouve = False
 
         for tournoi in tournois:
-            if tournoi.id == id:
+            if tournoi.nom == nom_tournoi:
                 tournois.remove(tournoi)
                 tournoi_trouve = True
                 break
@@ -61,6 +61,4 @@ class GestionnaireTournois:
         return None
     
     def generer_id_unique():
-        data = 'votre_data_unique'.encode('utf-8')
-        hashed = hashlib.sha256(data).hexdigest()
-        return hashed[:8]
+        return str(uuid.uuid4())
