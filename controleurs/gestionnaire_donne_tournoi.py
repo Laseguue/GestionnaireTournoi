@@ -59,6 +59,3 @@ class GestionnaireTournois:
             if tournoi.nom == nom:
                 return tournoi
         return None
-    
-    def generer_id_unique():
-        return str(uuid.uuid4())

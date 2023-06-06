@@ -1,9 +1,12 @@
 from controleurs.rapport_control import RapportController
 from controleurs.tournoi_control import TournoiController
 from controleurs.gestionnaire_donne_tournoi import GestionnaireTournois
+from controleurs.gestionnaire_donne_joueur import GestionnaireJoueurs
 from controleurs.rapport_control import RapportController
 from controleurs.joueur_control import PlayerController
 from vues.menu_vues import MenuVues
+from modeles.tournoi import Tournoi
+from modeles.joueur import Joueur
 
 class MenuController:
     @staticmethod
@@ -53,7 +56,7 @@ class MenuController:
         while True:  
             choix = MenuVues.afficher_menu_joueur()
             if choix == "1":
-                PlayerController.creer_joueur()
+                Joueur.creer_joueur(GestionnaireJoueurs.verifier_identifiant_national, GestionnaireJoueurs.verifier_date_naissance)
             elif choix == "2":
                 PlayerController.supprimer_joueur()
             elif choix == "3":
@@ -67,7 +70,7 @@ class MenuController:
             choix = MenuVues.afficher_menu_tournoi()
 
             if choix == "1":
-                tournoi = TournoiController.creer_tournoi()
+                tournoi = Tournoi.creer_tournoi()
                 GestionnaireTournois.enregistrer(tournoi)
                 print(f"Le tournois {tournoi.nom} à étais créer avec succes.\n")
             elif choix == "2":

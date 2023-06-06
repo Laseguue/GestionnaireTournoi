@@ -8,21 +8,6 @@ from controleurs.gestionnaire_donne_joueur import GestionnaireJoueurs
 
 
 class TournoiController:
-    @staticmethod
-    def creer_tournoi():
-        print("Entrez les informations du tournoi :")
-
-        id = GestionnaireTournois.generer_id_unique() 
-        nom = input("Nom : ")
-        lieu = input("Lieu : ")
-        date_debut = input("Date de début (JJ/MM/AAAA) : ")
-        date_fin = input("Date de fin (JJ/MM/AAAA) : ")
-        nb_tours = int(input("Nombre de tours : "))
-        description = input("Description : ")
-
-        tournoi = Tournoi(id, nom, lieu, date_debut, date_fin, nb_tours=4, description=description)
-
-        return tournoi
     
     @staticmethod
     def supprimer_tournoi(tournoi):

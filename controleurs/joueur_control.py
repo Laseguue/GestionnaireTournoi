@@ -1,30 +1,9 @@
 import re
 from datetime import datetime
-from modeles.joueur import Joueur
 from controleurs.gestionnaire_donne_joueur import GestionnaireJoueurs
 
 
 class PlayerController:
-    @staticmethod
-    def creer_joueur():
-        print("Entrez les informations du joueur :")
-        identifiant_national = PlayerController._verifier_identifiant_national()
-        
-        if GestionnaireJoueurs.joueur_existe(identifiant_national):
-            print("Un joueur avec cet identifiant national existe déjà.")
-            return None
-
-        nom = input("Nom : ")
-        prenom = input("Prénom : ")
-        date_naissance = PlayerController._verifier_date_naissance()
-
-        nouveau_joueur = Joueur.generate_joueur(identifiant_national, nom, prenom, date_naissance)
-        
-        GestionnaireJoueurs.enregistrer(nouveau_joueur)
-
-        print(f"Joueur {nouveau_joueur.nom} enregistré avec succès.")
-
-        return nouveau_joueur
     
     @staticmethod
     def supprimer_joueur():
