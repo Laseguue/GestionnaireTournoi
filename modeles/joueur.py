@@ -1,8 +1,12 @@
 from controleurs.joueur_control import PlayerController
 from controleurs.gestionnaire_donne_joueur import GestionnaireJoueurs
+from vues.joueur_vues import VuesJoueur
 
 class Joueur:
     def __init__(self, identifiant_national, nom, prenom, date_naissance, score=0, matchs=[]):
+        """
+        Initialise un nouveau joueur.
+        """
         self.identifiant_national = identifiant_national
         self.nom = nom
         self.prenom = prenom
@@ -12,25 +16,25 @@ class Joueur:
     
     @staticmethod
     def generate_joueur(identifiant_national, nom, prenom, date_naissance):
+        """
+        Génère un nouveau joueur.
+        """
         return Joueur(identifiant_national, nom, prenom, date_naissance)
     
     @classmethod
     def creer_joueur(cls, verifier_identifiant_national, verifier_date_naissance):
-        print("Entrez les informations du joueur :")
+        """
+        Crée un nouveau joueur après avoir validé les informations d'entrée.
+        """
+        VuesJoueur.info_joueur()
         identifiant_national = verifier_identifiant_national()
-        
         if GestionnaireJoueurs.joueur_existe(identifiant_national):
-            print("Un joueur avec cet identifiant national existe déjà.")
+            VuesJoueur.joueur_exist_deja()
             return None
-
-        nom = input("Nom : ")
-        prenom = input("Prénom : ")
+        nom = PlayerController.verifier_nom()
+        prenom = PlayerController.verifier_prenom()
         date_naissance = verifier_date_naissance()
-
         nouveau_joueur = cls.generate_joueur(identifiant_national, nom, prenom, date_naissance)
-        
         GestionnaireJoueurs.enregistrer(nouveau_joueur)
-
-        print(f"Joueur {nouveau_joueur.nom} enregistré avec succès.")
-
+        VuesJoueur.joueur_enregistre_avec_succes(nom)
         return nouveau_joueur

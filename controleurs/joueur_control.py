@@ -1,39 +1,45 @@
 import re
 from datetime import datetime
 from controleurs.gestionnaire_donne_joueur import GestionnaireJoueurs
+from vues.joueur_vues import VuesJoueur
+
 
 
 class PlayerController:
     
     @staticmethod
     def supprimer_joueur():
+        """
+        Demande à l'utilisateur d'entrer l'identifiant national du joueur à supprimer, puis supprime le joueur correspondant.
+        """
         identifiant_national = input("Entrez l'identifiant national du joueur à supprimer : ")
-
         if not GestionnaireJoueurs.joueur_existe(identifiant_national):
-            print("Aucun joueur avec cet identifiant national n'existe.")
+            VuesJoueur.joueur_exist_pas()
             return None
-
         GestionnaireJoueurs.supprimer_joueur(identifiant_national)
-
-        print(f"Joueur avec l'identifiant national {identifiant_national} a été supprimé avec succès.")
-
+        VuesJoueur.joueur_supprime_avec_succes(identifiant_national)
         return None
 
     @staticmethod
-    def _verifier_identifiant_national():
+    def verifier_nom():
+        """
+        Demande à l'utilisateur d'entrer un nom et le vérifie.
+        """
         while True:
-            identifiant_national = input("Identifiant national (Deux lettres suivies de cinq chiffres, par exemple AB12345) : ")
-            if re.match(r'^[a-zA-Z]{2}\d{5}$', identifiant_national):
-                return identifiant_national
+            nom = input("Nom : ").strip()  
+            if nom:  
+                return nom
             else:
-                print("Format de l'identifiant national incorrect, veuillez réessayer.")
+                VuesJoueur.champ_vide()
 
     @staticmethod
-    def _verifier_date_naissance():
+    def verifier_prenom():
+        """
+        Demande à l'utilisateur d'entrer un prénom et le vérifie.
+        """
         while True:
-            date_naissance = input("Date de naissance (JJ/MM/AAAA) : ")
-            try:
-                datetime.strptime(date_naissance, '%d/%m/%Y')
-                return date_naissance
-            except ValueError:
-                print("Format de la date de naissance incorrect, veuillez réessayer.")
+            prenom = input("Prénom : ").strip()  
+            if prenom:  
+                return prenom
+            else:
+                VuesJoueur.champ_vide()

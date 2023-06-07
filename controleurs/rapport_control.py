@@ -4,39 +4,52 @@ from modeles.tour import Tour
 from modeles.match import Match
 from controleurs.gestionnaire_donne_tournoi import GestionnaireTournois
 from controleurs.gestionnaire_donne_joueur import GestionnaireJoueurs
+from vues.rapport_vues import VuesRapport
 
 class RapportController:
     @staticmethod
     def afficher_joueurs():
+        """
+        Affiche les informations sur tous les joueurs.
+        """
         joueurs = GestionnaireJoueurs.charger()
         joueurs.sort(key=lambda j: j.nom)
         for joueur in joueurs:
-            print(f"{joueur.nom}")
+            VuesRapport.afficher_joueur(joueur)
 
     @staticmethod
     def afficher_tournois():
+        """
+        Affiche les informations sur tous les tournois.
+        """
         tournois = GestionnaireTournois.charger()
         for tournoi in tournois:
-            print(f"Id : {tournoi.id} \n{tournoi.nom}, du {tournoi.date_debut} au {tournoi.date_fin}")
+            VuesRapport.afficher_tournoi(tournoi)
 
     @staticmethod
     def afficher_joueurs_tournoi(nom_tournoi):
+        """
+        Affiche les joueurs participant à un tournoi spécifié.
+        """
         tournois = GestionnaireTournois.charger()
         for tournoi in tournois:
             if tournoi.nom == nom_tournoi:
                 joueurs = tournoi.joueurs
                 joueurs.sort(key=lambda j: j.nom) 
                 for joueur in joueurs:
-                    print(f"{joueur.nom}")
+                    VuesRapport.afficher_joueur(joueur)
                 break
 
     @staticmethod
     def afficher_tours_et_matchs(nom_tournoi):
+        """
+        Affiche les tours et les matchs d'un tournoi spécifié.
+        """
         tournois = GestionnaireTournois.charger()
         for tournoi in tournois:
             if tournoi.nom == nom_tournoi:
                 for i, tour in enumerate(tournoi.tours, 1):
-                    print(f"Tour {i}:")
+                    VuesRapport.afficher_tour(i)
                     for match in tour.matchs:
                         if match.resultat == 0:
                             gagnant = match.joueur1.nom
@@ -44,23 +57,29 @@ class RapportController:
                             gagnant = match.joueur2.nom
                         else:
                             gagnant = 'égalité'
-                        print(f"Match {match.id} : {match.joueur1.nom} vs {match.joueur2.nom} : gagnant : {gagnant}")
+                        VuesRapport.afficher_tour_et_match(tour, i, match)
                 break
     
     @staticmethod
     def afficher_nom_et_dates_tournoi(nom_tournoi):
+        """
+        Affiche le nom et les dates d'un tournoi spécifié.
+        """
         tournois = GestionnaireTournois.charger()
         for tournoi in tournois:
             if tournoi.nom == nom_tournoi:
-                print(f"Nom du tournoi: {tournoi.nom}, du {tournoi.date_debut} au {tournoi.date_fin}")
-
+                VuesRapport.afficher_nom_et_dates_tournoi(tournoi)
                 break
+
     @staticmethod
     def rapport_de_tournoi(nom_tournoi):
+        """
+        Génère un rapport détaillé pour un tournoi spécifié.
+        """
         nom = nom_tournoi
         tournoi = GestionnaireTournois.charger_tournoi_par_nom(nom)
         if tournoi is None:
-            print("Aucun tournoi trouvé avec ce nom.")
+            VuesRapport.aucun_tournoi_trouve()
             return
         with open(f"{nom}_rapport.txt", "w") as f:
             f.write(f"Tournoi: {tournoi.nom}\n")
@@ -89,4 +108,4 @@ class RapportController:
             sorted_joueurs = sorted(tournoi.joueurs, key=lambda joueur: joueur.score, reverse=True)
             for i, joueur in enumerate(sorted_joueurs, 1):
                 f.write(f"{i}. {joueur.nom} {joueur.score} \n")
-        print("Rapport généré avec succès.")
+        VuesRapport.rapport_genere()
