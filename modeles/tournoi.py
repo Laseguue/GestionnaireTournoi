@@ -48,7 +48,7 @@ class Tournoi:
             nb_tours = input("Nombre de tours : ")
         nb_tours = int(nb_tours) if nb_tours else 4
         description = input("Description : ")
-        tournoi = cls(id, nom, lieu, date_debut, date_fin, nb_tours=4, description=description)
+        tournoi = cls(id, nom, lieu, date_debut, date_fin, nb_tours, description=description)
         return tournoi
 
     @staticmethod
