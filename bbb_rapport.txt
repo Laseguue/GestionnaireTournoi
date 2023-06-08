@@ -1,0 +1,30 @@
+Tournoi: bbb
+Lieu: bbb
+Date d�but: 12/12/2023
+Date fin: 12/12/2023
+Nombres de tours: 4
+Description: bbb
+
+Joueurs:
+FR12345 arthur seguret 29/08/1996
+GB12345 kaiser mord 12/12/1900
+FR54321 pluton mortille 29/08/1996
+
+Tours:
+Tour 1:
+	Match 1: pluton vs arthur : gagnant : arthur
+	Match 2: kaiser vs pluton : gagnant : kaiser
+Tour 2:
+	Match 1: arthur vs kaiser : gagnant : arthur
+	Match 2: pluton vs arthur : gagnant : arthur
+Tour 3:
+	Match 1: arthur vs kaiser : gagnant : arthur
+	Match 2: pluton vs arthur : gagnant : arthur
+Tour 4:
+	Match 1: arthur vs kaiser : gagnant : arthur
+	Match 2: pluton vs arthur : gagnant : arthur
+
+Classement:
+1. seguret 7 
+2. mord 1 
+3. mortille 0 

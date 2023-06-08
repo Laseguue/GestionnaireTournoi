@@ -2,7 +2,6 @@ from controleurs.rapport_control import RapportController
 from controleurs.tournoi_control import TournoiController
 from controleurs.gestionnaire_donne_tournoi import GestionnaireTournois
 from controleurs.gestionnaire_donne_joueur import GestionnaireJoueurs
-from controleurs.rapport_control import RapportController
 from controleurs.joueur_control import PlayerController
 from vues.menu_vues import MenuVues
 from modeles.tournoi import Tournoi
