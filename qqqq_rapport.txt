@@ -1,0 +1,32 @@
+Tournoi: qqqq
+Lieu: qqqq
+Date début: 12/12/2023
+Date fin: 12/12/2023
+Nombres de tours: 4
+Description: qqqq
+
+Joueurs:
+FR12345 arthur seguret 29/08/1996
+GB12345 kaiser mord 12/12/1900
+FR54321 pluton mortille 29/08/1996
+VF12345 bgfs frdf 29/08/1996
+
+Tours:
+Tour 1:
+	Match 1: arthur vs kaiser : gagnant : arthur
+	Match 2: pluton vs bgfs : gagnant : pluton
+Tour 2:
+	Match 1: arthur vs pluton : gagnant : arthur
+	Match 2: kaiser vs bgfs : gagnant : kaiser
+Tour 3:
+	Match 1: arthur vs pluton : gagnant : arthur
+	Match 2: kaiser vs bgfs : gagnant : kaiser
+Tour 4:
+	Match 1: arthur vs kaiser : gagnant : arthur
+	Match 2: pluton vs bgfs : gagnant : pluton
+
+Classement:
+1. seguret 5 
+2. mord 2 
+3. mortille 2 
+4. frdf 0 

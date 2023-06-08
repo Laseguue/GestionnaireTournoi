@@ -111,11 +111,11 @@ class TournoiController:
             TournoiController.creer_classement(tournoi)
 
         elif tournoi.num_tour_actuel > 0:
-            for match in tournoi.tours[tournoi.num_tour_actuel - 1].matchs:
-                if match.resultat is None:
-                    VuesTournoi.match_sans_resultat()
-                    TournoiController.saisir_resultat_tour(tournoi)
-                    break
+            dernier_tour_termine = all(match.resultat is not None for match in tournoi.tours[tournoi.num_tour_actuel - 1].matchs)
+            
+            if not dernier_tour_termine:
+                VuesTournoi.match_sans_resultat()
+                TournoiController.saisir_resultat_tour(tournoi)
             else:
                 TournoiController.continuer_tournoi(tournoi)
         elif tournoi.num_tour_actuel == 0:
