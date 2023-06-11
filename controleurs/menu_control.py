@@ -8,6 +8,7 @@ from modeles.tournoi import Tournoi
 from modeles.joueur import Joueur
 from vues.tournoi_vues import VuesTournoi
 
+
 class MenuController:
     @staticmethod
     def afficher_menu_principal():
@@ -28,7 +29,7 @@ class MenuController:
                 break
             else:
                 MenuVues.choix_invalid()
-    
+
     @staticmethod
     def choisir_option():
         """
@@ -42,7 +43,7 @@ class MenuController:
                 RapportController.afficher_tournois()
             elif option == "3":
                 nom_tournoi = MenuController.input_nom_tournoi()
-                RapportController.afficher_nom_et_dates_tournoi(nom_tournoi) 
+                RapportController.afficher_nom_et_dates_tournoi(nom_tournoi)
             elif option == "4":
                 nom_tournoi = MenuController.input_nom_tournoi()
                 RapportController.afficher_joueurs_tournoi(nom_tournoi)
@@ -56,23 +57,26 @@ class MenuController:
                 break
             else:
                 MenuVues.choix_invalid()
-    
+
     @staticmethod
     def menu_joueur():
         """
         Affiche le menu des joueurs et gère l'interaction utilisateur.
         """
-        while True:  
+        while True:
             choix = MenuVues.afficher_menu_joueur()
             if choix == "1":
-                Joueur.creer_joueur(GestionnaireJoueurs.verifier_identifiant_national, GestionnaireJoueurs.verifier_date_naissance)
+                Joueur.creer_joueur(
+                    GestionnaireJoueurs.verifier_identifiant_national,
+                    GestionnaireJoueurs.verifier_date_naissance
+                )
             elif choix == "2":
                 PlayerController.supprimer_joueur()
             elif choix == "3":
-                break  
+                break
             else:
                 MenuVues.choix_invalid()
-    
+
     @staticmethod
     def menu_tournoi():
         """
@@ -102,7 +106,7 @@ class MenuController:
                 break
             else:
                 MenuVues.choix_invalid()
-                
+
     @staticmethod
     def entrer_tournoi_pour_charger():
         """
@@ -115,7 +119,7 @@ class MenuController:
                 return tournoi
             else:
                 VuesTournoi.tournoi_introuvable()
-    
+
     @staticmethod
     def input_nom_tournoi():
         """

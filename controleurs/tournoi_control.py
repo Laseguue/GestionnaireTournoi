@@ -1,6 +1,4 @@
 import random
-from modeles.joueur import Joueur
-from modeles.tournoi import Tournoi
 from modeles.tour import Tour
 from modeles.match import Match
 from controleurs.gestionnaire_donne_tournoi import GestionnaireTournois
@@ -9,7 +7,6 @@ from vues.tournoi_vues import VuesTournoi
 
 
 class TournoiController:
-    
     @staticmethod
     def supprimer_tournoi(tournoi):
         """
@@ -69,10 +66,14 @@ class TournoiController:
             for match in matchs:
                 if match.joueur1.identifiant_national not in joueur_sans_paire.matchs and \
                    match.joueur2.identifiant_national not in joueur_sans_paire.matchs:
-                    match_supplementaire = Match(tournoi.num_tour_actuel * 100 + len(matchs) + 1, joueur_sans_paire, match.joueur1)
+                    match_supplementaire = Match(
+                        tournoi.num_tour_actuel * 100 + len(matchs) + 1,
+                        joueur_sans_paire,
+                        match.joueur1
+                    )
                     matchs.append(match_supplementaire)
                     break
-        
+
         tour = Tour(tournoi.num_tour_actuel, matchs, f"Tour {tournoi.num_tour_actuel}")
         tournoi.tours.append(tour)
 
@@ -90,17 +91,17 @@ class TournoiController:
             for match in tour.matchs:
                 if match.id == match_id:
                     match.resultat = resultat
-                    
-                    if resultat == 0:    
+
+                    if resultat == 0:
                         match.joueur1.score += 1
-                    elif resultat == 1:  
+                    elif resultat == 1:
                         match.joueur2.score += 1
-                    elif resultat == 0.5:  
+                    elif resultat == 0.5:
                         match.joueur1.score += 0.5
                         match.joueur2.score += 0.5
                     break
         GestionnaireTournois.enregistrer(tournoi)
-        
+
     @staticmethod
     def lancer_tournoi(tournoi):
         """
@@ -111,8 +112,9 @@ class TournoiController:
             TournoiController.creer_classement(tournoi)
 
         elif tournoi.num_tour_actuel > 0:
-            dernier_tour_termine = all(match.resultat is not None for match in tournoi.tours[tournoi.num_tour_actuel - 1].matchs)
-            
+            dernier_tour_termine = (
+                all(match.resultat is not None for match in tournoi.tours[tournoi.num_tour_actuel - 1].matchs)
+            )
             if not dernier_tour_termine:
                 VuesTournoi.match_sans_resultat()
                 TournoiController.saisir_resultat_tour(tournoi)
@@ -120,7 +122,7 @@ class TournoiController:
                 TournoiController.continuer_tournoi(tournoi)
         elif tournoi.num_tour_actuel == 0:
             TournoiController.commencer_tournoi(tournoi)
-    
+
     @staticmethod
     def creer_classement(tournoi):
         """
@@ -128,7 +130,7 @@ class TournoiController:
         """
         tournoi.joueurs.sort(key=lambda j: j.score, reverse=True)
         GestionnaireTournois.enregistrer(tournoi)
-    
+
     @staticmethod
     def saisir_resultat_tour(tournoi):
         """
@@ -139,7 +141,9 @@ class TournoiController:
             VuesTournoi.info_match(match.id, match.joueur1.nom, match.joueur2.nom)
             while True:
                 try:
-                    resultat = float(input("Entrez le résultat (0 pour le joueur 1 gagnant, 1 pour le joueur 2 gagnant, 0.5 pour un match nul) : "))
+                    resultat = float(input("""Entrez le résultat
+                    (0 pour le joueur 1 gagnant, 1 pour le joueur 2 gagnant, 0.5 pour un match nul)
+                    : """))
                     if resultat in [0, 0.5, 1]:
                         TournoiController.enregistrer_resultat(tournoi, match.id, resultat)
                         break
@@ -147,7 +151,7 @@ class TournoiController:
                         VuesTournoi.resultat_invalide()
                 except ValueError:
                     VuesTournoi.entree_invalide()
-    
+
     @staticmethod
     def verifier_nb_joueurs(tournoi):
         """

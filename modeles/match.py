@@ -6,4 +6,4 @@ class Match:
         self.id = id
         self.joueur1 = joueur1
         self.joueur2 = joueur2
-        self.resultat = resultat 
+        self.resultat = resultat

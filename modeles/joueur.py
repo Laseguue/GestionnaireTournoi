@@ -2,6 +2,7 @@ from controleurs.joueur_control import PlayerController
 from controleurs.gestionnaire_donne_joueur import GestionnaireJoueurs
 from vues.joueur_vues import VuesJoueur
 
+
 class Joueur:
     def __init__(self, identifiant_national, nom, prenom, date_naissance, score=0, matchs=[]):
         """
@@ -12,15 +13,15 @@ class Joueur:
         self.prenom = prenom
         self.date_naissance = date_naissance
         self.score = score
-        self.matchs = matchs 
-    
+        self.matchs = matchs
+
     @staticmethod
     def generate_joueur(identifiant_national, nom, prenom, date_naissance):
         """
         Génère un nouveau joueur.
         """
         return Joueur(identifiant_national, nom, prenom, date_naissance)
-    
+
     @classmethod
     def creer_joueur(cls, verifier_identifiant_national, verifier_date_naissance):
         """

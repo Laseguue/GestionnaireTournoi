@@ -1,10 +1,11 @@
 import uuid
-import hashlib
 from vues.tournoi_vues import VuesTournoi
 from controleurs.gestionnaire_donne_tournoi import GestionnaireTournois
 
+
 class Tournoi:
-    def __init__(self, id, nom, lieu, date_debut, date_fin, nb_tours=4, tours=[], joueurs=[], num_tour_actuel=0, description=''):
+    def __init__(self, id, nom, lieu, date_debut, date_fin, nb_tours=4,
+                 tours=[], joueurs=[], num_tour_actuel=0, description=''):
         """
         Initialise un nouveau tournoi.
         """
@@ -40,7 +41,7 @@ class Tournoi:
             date_debut = input("Date de début (JJ/MM/AAAA) : ")
         date_fin = input("Date de fin (JJ/MM/AAAA) : ")
         while not GestionnaireTournois.valider_date(date_fin):
-            date_invalide()
+            VuesTournoi.date_invalide()
             date_fin = input("Date de fin (JJ/MM/AAAA) : ")
         nb_tours = input("Nombre de tours : ")
         while nb_tours and not GestionnaireTournois.valider_nb_tours(nb_tours):

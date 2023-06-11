@@ -1,10 +1,7 @@
-from modeles.joueur import Joueur
-from modeles.tournoi import Tournoi
-from modeles.tour import Tour
-from modeles.match import Match
 from controleurs.gestionnaire_donne_tournoi import GestionnaireTournois
 from controleurs.gestionnaire_donne_joueur import GestionnaireJoueurs
 from vues.rapport_vues import VuesRapport
+
 
 class RapportController:
     @staticmethod
@@ -35,7 +32,7 @@ class RapportController:
         for tournoi in tournois:
             if tournoi.nom == nom_tournoi:
                 joueurs = tournoi.joueurs
-                joueurs.sort(key=lambda j: j.nom) 
+                joueurs.sort(key=lambda j: j.nom)
                 for joueur in joueurs:
                     VuesRapport.afficher_joueur(joueur)
                 break
@@ -57,9 +54,9 @@ class RapportController:
                             gagnant = match.joueur2.nom
                         else:
                             gagnant = 'égalité'
-                        VuesRapport.afficher_tour_et_match(tour, i, match)
+                        VuesRapport.afficher_tour_et_match(tour, i, match, gagnant)
                 break
-    
+
     @staticmethod
     def afficher_nom_et_dates_tournoi(nom_tournoi):
         """

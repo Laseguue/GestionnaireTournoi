@@ -25,7 +25,7 @@ class GestionnaireJoueurs:
         try:
             with open(GestionnaireJoueurs.FILE_PATH, 'r') as file:
                 return jsonpickle.decode(file.read())
-        except (FileNotFoundError, json.JSONDecodeError):
+        except (FileNotFoundError, jsonpickle.UnpicklingError):
             return []
 
     @staticmethod
@@ -47,7 +47,7 @@ class GestionnaireJoueurs:
                 file.write(jsonpickle.encode(joueurs))
         else:
             VuesJoueur.joueur_exist_pas()
-        
+
     @staticmethod
     def charger_joueur_par_identifiant_national(identifiant_national):
         """
@@ -81,7 +81,7 @@ class GestionnaireJoueurs:
                 return identifiant_national
             else:
                 VuesJoueur.identifiant_invalide()
-    
+
     @staticmethod
     def verifier_date_naissance():
         """

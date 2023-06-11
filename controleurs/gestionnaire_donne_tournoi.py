@@ -1,7 +1,7 @@
 import jsonpickle
 import datetime
-import uuid
 from vues.tournoi_vues import VuesTournoi
+
 
 class GestionnaireTournois:
     FILE_PATH = 'Liste_de_tournois.json'
@@ -30,9 +30,9 @@ class GestionnaireTournois:
         try:
             with open(GestionnaireTournois.FILE_PATH, 'r') as file:
                 return jsonpickle.decode(file.read())
-        except (FileNotFoundError, json.JSONDecodeError):
+        except (FileNotFoundError, jsonpickle.UnpicklingError):
             return []
-        
+
     @staticmethod
     def supprimer_tournoi(nom_tournoi):
         """
