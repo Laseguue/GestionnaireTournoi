@@ -96,3 +96,11 @@ class GestionnaireTournois:
         Vérifie si le nombre de tours donné est valide.
         """
         return nb_tours.isdigit() and int(nb_tours) > 0
+
+    @staticmethod
+    def ajouter_joueur(tournoi, joueur):
+        """
+        Ajoute un joueur à un tournoi.
+        """
+        tournoi.joueurs.append(joueur)
+        GestionnaireTournois.enregistrer(tournoi)

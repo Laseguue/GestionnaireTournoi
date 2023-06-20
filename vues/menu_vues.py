@@ -97,4 +97,3 @@ class MenuVues:
         Informe que le programme se termine.
         """
         print("\n" + "*"*10 + " Au revoir ! " + "*"*10 + "\n")
-
