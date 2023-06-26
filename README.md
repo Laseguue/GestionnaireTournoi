@@ -2,11 +2,11 @@ Tournoi d'échecs Ce programme est conçu pour gérer des tournois d'échecs. Il
 
 Installation Clonez ce dépôt sur votre machine locale en utilisant git clone https://github.com/utilisateur/nom-du-depot.git
 
-Naviguez jusqu'au répertoire du projet avec cd tournoi-echecs
+Naviguez jusqu'au répertoire du projet avec cd projet4v2
 
 Installez les dépendances avec pip install -r requirements.txt
 
-Exécution du programme Pour exécuter le programme, naviguez jusqu'au répertoire du projet et exécutez le fichier Start.py avec la commande "python -m Start.py".
+Exécution du programme Pour exécuter le programme, naviguez jusqu'au répertoire du projet et exécutez le fichier main.py avec la commande "python -m main.py".
 
 Suivez les instructions à l'écran pour naviguer dans le menu et utiliser les différentes fonctionnalités du programme.
 
